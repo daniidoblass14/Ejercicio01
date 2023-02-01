@@ -2,7 +2,7 @@ package org.example;
 
 import javax.persistence.*;
 @Entity
-@Table (name = "provincia")
+@Table (name = "provincias")
 public class Provincia {
     private int id;
     private String nombre;
@@ -10,7 +10,6 @@ public class Provincia {
 
     @Id
     @Column (name = "id")
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }

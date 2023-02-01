@@ -6,7 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class PaisManager {
+public class ProvinciaManager {
 
     protected SessionFactory sessionFactory;
 
@@ -27,14 +27,15 @@ public class PaisManager {
     protected void create() {
         // code to save a book
 
-        Pais pais = new Pais();
-        pais.setId(1);
-        pais.setNombre("Hungría");
+        Provincia provincia = new Provincia();
+        provincia.setId(1);
+        provincia.setNombre("Málaga");
+        provincia.setIdPais(2);
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.save(pais);
+        session.save(provincia);
 
         session.getTransaction().commit();
         session.close();
@@ -44,23 +45,25 @@ public class PaisManager {
         // code to get a book
         Session session = sessionFactory.openSession();
 
-        int idPais = 1;
-        Pais pais = session.get(Pais.class,idPais);
+        int id = 1;
+        Provincia provincia = session.get(Provincia.class,id);
 
-        System.out.println("ID PAIS: " +pais.getId());
-        System.out.println("NOMBRE PAIS: "+pais.getNombre());
+        System.out.println("ID PROVINCIA: " +provincia.getId());
+        System.out.println("NOMBRE PROVINCIA: "+provincia.getNombre());
+        System.out.println("ID PAIS: "+provincia.getIdPais());
     }
 
     protected void update() {
         // code to modify a book
-        Pais pais = new Pais();
-        pais.setId(1);
-        pais.setNombre("España");
+        Provincia provincia = new Provincia();
+        provincia.setId(1);
+        provincia.setNombre("Sevilla");
+        provincia.setIdPais(7);
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.update(pais);
+        session.update(provincia);
 
         session.getTransaction().commit();
         session.close();
@@ -69,13 +72,13 @@ public class PaisManager {
 
     protected void delete() {
         // code to remove a book
-        Pais pais = new Pais();
-        pais.setId(1);
+        Provincia provincia = new Provincia();
+        provincia.setId(1);
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.delete(pais);
+        session.delete(provincia);
 
         session.getTransaction().commit();
         session.close();
@@ -83,10 +86,9 @@ public class PaisManager {
 
     public static void main(String[] args) {
         // code to run the program
-        PaisManager paisManager = new PaisManager();
-        paisManager.setUp();
-        paisManager.create();
-        paisManager.exit();
+        ProvinciaManager provinciaManager = new ProvinciaManager();
+        provinciaManager.setUp();
+        provinciaManager.delete();
+        provinciaManager.exit();
     }
-
 }
